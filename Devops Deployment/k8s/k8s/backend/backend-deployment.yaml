@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: mgongiti/mortgages:0.4  # Updated to correct version
+          ports:
+            - containerPort: 8081       # ✅ Correct container port
+          env:
+            - name: AGENTIC_SERVICE_URL
+              value: http://backend-service:8085
+            - name: POSTGRES_HOST
+              value: postgres-service
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_USER
+              value: myuser
+            - name: POSTGRES_PASSWORD
+              value: mypass
+            - name: POSTGRES_DB
+              value: mydb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 8085         # Client access port
+      targetPort: 8081   # ✅ Must match containerPort
+  type: LoadBalancer     # ✅ For external access (ClusterIP won't expose outside)
