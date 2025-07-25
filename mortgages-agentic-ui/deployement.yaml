@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marketplace-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: marketplace-ui
+  template:
+    metadata:
+      labels:
+        app: marketplace-ui
+    spec:
+      containers:
+        - name: marketplace-ui
+          image: europe-west2-docker.pkg.dev/playpen-5bf1e3/main/marketplace-ui:0.1
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: marketplace-ui
+spec:
+  selector:
+    app: marketplace-ui
+  ports:
+    - protocol: TCP
+      port: 80 # Matches NGINX
+      targetPort: 80
+  type: Load Balancer

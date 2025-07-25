@@ -1,0 +1,36 @@
+.markdown-response pre,
+.markdown-response code {
+  font-family: 'Fira Mono', 'Menlo', 'Consolas', 'Monaco', monospace;
+  font-size: 15px;
+  background: #f6f8fa !important;   /* Light gray code bg, like GitHub */
+  color: #111;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.markdown-response table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 15px;
+}
+.markdown-response th, .markdown-response td {
+  border: 1px solid #e0e0e0;
+  padding: 6px 10px;
+}
+
+.markdown-response h1, .markdown-response h2, .markdown-response h3 {
+  margin: 1em 0 0.5em 0;
+  font-weight: 700;
+}
+.markdown-response blockquote {
+  border-left: 4px solid #e0e0e0;
+  margin: 0.5em 0;
+  padding-left: 1em;
+  color: #555;
+  background: #fafbfc;
+  border-radius: 3px;
+}
+
+.markdown-response ul, .markdown-response ol {
+  margin: 0.4em 0 0.4em 1.5em;
+}

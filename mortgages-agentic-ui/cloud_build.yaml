@@ -1,0 +1,22 @@
+substitutions:
+  _VERSION: "0.1"
+  _PLAYPEN_ID: "playpen-5bf1e3"
+  _APP_NAME: "marketplace-ui"
+
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+  args:
+    [
+      "build",
+      "-t",
+      "europe-west2-docker.pkg.dev/${_PLAYPEN_ID}/main/${_APP_NAME}:${_VERSION}",
+      "."
+    ]
+  name: "gcr.io/cloud-builders/docker"
+  args:
+    [
+      "push",
+      "europe-west2-docker.pkg.dev/${_PLAYPEN_ID}/main/${_APP_NAME}:${_VERSION}",
+    ]
+images:
+  "europe-west2-docker.pkg.dev/${_PLAYPEN_ID}/main/${_APP_NAME}:${_VERSION}"
